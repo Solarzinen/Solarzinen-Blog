@@ -1,33 +1,567 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Blog de Solarzinen/Eduardo</title>
-   <style>
-      header{
-         background-color: #FFBD77;
-         color: #230000;
-         text-align: center;
-         max-width: 1300px;
-         margin: 0 auto;
-         border: 5px solid #FFB15E;
-      }
-      main{
-         background-color: #FFBD77;
-         color: #230000;
-         text-align: center;
-         max-width: 900px;
-         margin: 0 auto;
-         padding: 15px;
-         border: 4px solid #FFB15E;
-      }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Blog</title>
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px 8%;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 80px 8%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           POSTS
+        ========================= */
+
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .post {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .post:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+            height: 200px;
+            background: linear-gradient(
+                135deg,
+                #3b82f6,
+                #9333ea
+            );
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        .post-category {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .post h2 {
+            margin: 10px 0;
+            font-size: 22px;
+        }
+
+        .post p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            color: #7c3aed;
+        }
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        .about {
+            margin-top: 70px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .about h2 {
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            color: #666;
+        }
+
+        /* =========================
+           NEWSLETTER
+        ========================= */
+
+        .newsletter {
+            margin-top: 50px;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+            background: #111827;
+            color: white;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .newsletter input {
+            padding: 14px;
+            width: 300px;
+            max-width: 100%;
+            border: none;
+            border-radius: 6px;
+            margin-right: 8px;
+        }
+
+        .newsletter button {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .newsletter button:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        footer {
+            margin-top: 60px;
+            padding: 30px;
+            text-align: center;
+            background: #0f172a;
+            color: #94a3b8;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .posts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .posts {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter {
+                padding: 30px 20px;
+            }
+
+            .newsletter input {
+                width: 100%;
+                margin: 0 0 10px;
+            }
+
+            .newsletter button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-   <header>
-      <h1>Bem vindos ao meu blog!! ^^</h1>
-      <p>Eu irei falar um pouco sobre minha vida e experiencias em jogos da pĺataforma da Roblox ou da Steam.</p>
-   </header>
-   
+
+    <header>
+        <div class="header-container">
+
+            <a href="#" class="logo">
+                MeuBlog
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Tecnologia</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Sobre</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ideias que inspiram.</h1>
+
+            <p>
+                Um espaço para compartilhar conhecimento,
+                tecnologia, criatividade e experiências.
+            </p>
+        </div>
+    </section>
+
+
+    <main class="container">
+
+        <h2 class="section-title">
+            Artigos recentes
+        </h2>
+
+        <section class="posts">
+
+            <article class="post">
+
+                <div class="post-image"></div>
+
+                <div class="post-content">
+
+                    <span class="post-category">
+                        Tecnologia
+                    </span>
+
+                    <h2>
+                        O futuro da tecnologia
+                    </h2>
+
+                    <p>
+                        Descubra como as novas tecnologias
+                        estão transformando nosso cotidiano.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="post">
+
+                <div class="post-image"></div>
+
+                <div class="post-content">
+
+                    <span class="post-category">
+                        Design
+                    </span>
+
+                    <h2>
+                        Como criar designs melhores
+                    </h2>
+
+                    <p>
+                        Algumas ideias simples para melhorar
+                        seus projetos e interfaces.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="post">
+
+                <div class="post-image"></div>
+
+                <div class="post-content">
+
+                    <span class="post-category">
+                        Programação
+                    </span>
+
+                    <h2>
+                        Aprendendo a programar
+                    </h2>
+
+                    <p>
+                        Um guia para quem está começando
+                        sua jornada no mundo da programação.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="post">
+
+                <div class="post-image"></div>
+
+                <div class="post-content">
+
+                    <span class="post-category">
+                        Carreira
+                    </span>
+
+                    <h2>
+                        Como evoluir profissionalmente
+                    </h2>
+
+                    <p>
+                        Estratégias para desenvolver suas
+                        habilidades e alcançar seus objetivos.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="post">
+
+                <div class="post-image"></div>
+
+                <div class="post-content">
+
+                    <span class="post-category">
+                        Produtividade
+                    </span>
+
+                    <h2>
+                        Trabalhe de forma inteligente
+                    </h2>
+
+                    <p>
+                        Técnicas simples para organizar melhor
+                        seu tempo e suas tarefas.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="post">
+
+                <div class="post-image"></div>
+
+                <div class="post-content">
+
+                    <span class="post-category">
+                        Lifestyle
+                    </span>
+
+                    <h2>
+                        Pequenas mudanças, grandes resultados
+                    </h2>
+
+                    <p>
+                        Veja como pequenas mudanças podem
+                        transformar sua rotina.
+                    </p>
+
+                    <a href="#" class="read-more">
+                        Ler artigo →
+                    </a>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <section class="about">
+
+            <h2>
+                Sobre o blog
+            </h2>
+
+            <p>
+                Este blog foi criado para compartilhar ideias,
+                experiências e conteúdos interessantes sobre
+                tecnologia, design, programação e muito mais.
+            </p>
+
+        </section>
+
+
+        <section class="newsletter">
+
+            <h2>
+                Receba novos artigos
+            </h2>
+
+            <p>
+                Inscreva-se para receber as novidades do blog.
+            </p>
+
+            <form>
+                <input
+                    type="email"
+                    placeholder="Seu melhor e-mail"
+                >
+
+                <button type="submit">
+                    Inscrever-se
+                </button>
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            © 2026 MeuBlog. Todos os direitos reservados.
+        </p>
+    </footer>
+
 </body>
+</html>
